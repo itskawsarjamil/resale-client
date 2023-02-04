@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-// import logo from "../../../assets/logo/foodielogo.png";
+import logo from "../../../assets/logo/resalelogo.png";
 
 const Footer = () => {
     return (
@@ -10,13 +10,13 @@ const Footer = () => {
                     <div className=" flex flex-col justify-self-center">
                         <Link
                             to="/"
-                            aria-label="Foodie"
-                            title="Foodie"
+                            aria-label="Resale"
+                            title="Resale"
                             className="inline-flex items-center"
                         >
-                            {/* <img className="w-10" src={logo} alt="logo" /> */}
+                            <img className="w-10" src={logo} alt="logo" />
                             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                                Foodie
+                                Resale
                             </span>
                         </Link>
                         <div className="mt-6 lg:max-w-sm">
@@ -107,7 +107,7 @@ const Footer = () => {
                     © Copyright 2023 Kawsar Jamil. All rights reserved.
                 </p>
                 <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
-                    
+
                     <li>
                         <a
                             href="/"

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../../../context/AuthContext/AuthProvider";
-// import logo from "../../../assets/logo/foodielogo.png";
+import logo from "../../../assets/logo/resalelogo.png";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,13 +19,13 @@ const Header = () => {
             <div className="relative flex items-center justify-between">
                 <Link
                     to="/"
-                    aria-label="Foodie"
-                    title="Foodie"
+                    aria-label="Resale"
+                    title="Resale"
                     className="inline-flex items-center"
                 >
-                    {/* <img className="w-10" src={logo} alt="logo" /> */}
+                    <img className="w-10" src={logo} alt="logo" />
                     <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                        Foodie
+                        Resale
                     </span>
                 </Link>
                 <ul className="flex items-center hidden space-x-8 lg:flex">
@@ -34,7 +34,7 @@ const Header = () => {
                             to="/home"
                             aria-label="Home"
                             title="Home"
-                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                         >
                             Home
                         </NavLink>
@@ -44,7 +44,7 @@ const Header = () => {
                             to="/services"
                             aria-label="Our services"
                             title="Our services"
-                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                         >
                             Services
                         </NavLink>
@@ -55,7 +55,7 @@ const Header = () => {
                             to="/about"
                             aria-label="About us"
                             title="About us"
-                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                         >
                             About us
                         </NavLink>
@@ -65,7 +65,7 @@ const Header = () => {
                             to="/blog"
                             aria-label="blog"
                             title="blog"
-                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                         >
                             Blog
                         </NavLink>
@@ -76,7 +76,7 @@ const Header = () => {
                             to="/addservice"
                             aria-label="Add Service"
                             title="Add Service"
-                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                         >
                             Add Service
                         </NavLink>
@@ -89,20 +89,20 @@ const Header = () => {
                                         to="/dashboard"
                                         aria-label="dashboard"
                                         title="dashboard"
-                                        className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                                        className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                                     >
                                         Dashboard
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <button onClick={handleLogOut} className="btn-ghost inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-yellow-400 hover:bg-yellow-700 focus:shadow-outline focus:outline-none " aria-label="Log Out" title="Log Out">Log Out</button>
+                                    <button onClick={handleLogOut} className="btn-ghost inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-teal-400 hover:bg-teal-700 focus:shadow-outline focus:outline-none " aria-label="Log Out" title="Log Out">Log Out</button>
                                 </li>
                             </>
                             :
                             <li>
                                 <NavLink
                                     to="/signin"
-                                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-yellow-400 hover:bg-yellow-700 focus:shadow-outline focus:outline-none"
+                                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-teal-400 hover:bg-teal-700 focus:shadow-outline focus:outline-none"
                                     aria-label="Sign in"
                                     title="Sign in"
                                 >
@@ -117,7 +117,7 @@ const Header = () => {
                     <button
                         aria-label="Open Menu"
                         title="Open Menu"
-                        className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-yellow-50 focus:bg-deep-yellow-50"
+                        className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-teal-50 focus:bg-deep-teal-50"
                         onClick={() => setIsMenuOpen(true)}
                     >
                         <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
@@ -146,9 +146,9 @@ const Header = () => {
                                             title="Company"
                                             className="inline-flex items-center"
                                         >
-                                            {/* <img className="w-10" src={logo} alt="logo" /> */}
-                                            <span className="ml-2 text-xl font-bold tracking-wide text-yellow-500 uppercase">
-                                                Foodie
+                                            <img className="w-10" src={logo} alt="logo" />
+                                            <span className="ml-2 text-xl font-bold tracking-wide text-teal-800 uppercase">
+                                                Resale
                                             </span>
                                         </NavLink>
                                     </div>
@@ -175,7 +175,7 @@ const Header = () => {
                                                 to="/home"
                                                 aria-label="Home"
                                                 title="Home"
-                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                                             >
                                                 Home
                                             </NavLink>
@@ -185,7 +185,7 @@ const Header = () => {
                                                 to="/services"
                                                 aria-label="Our services"
                                                 title="Our services"
-                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                                             >
                                                 Services
                                             </NavLink>
@@ -196,7 +196,7 @@ const Header = () => {
                                                 to="/about"
                                                 aria-label="About us"
                                                 title="About us"
-                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                                             >
                                                 About us
                                             </NavLink>
@@ -206,7 +206,7 @@ const Header = () => {
                                                 to="/blog"
                                                 aria-label="blog"
                                                 title="blog"
-                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                                             >
                                                 Blog
                                             </NavLink>
@@ -216,7 +216,7 @@ const Header = () => {
                                                 to="/addservice"
                                                 aria-label="Add Service"
                                                 title="Add Service"
-                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                                             >
                                                 Add Service
                                             </NavLink>
@@ -229,21 +229,21 @@ const Header = () => {
                                                             to="/dashboard"
                                                             aria-label="dashboard"
                                                             title="dashboard"
-                                                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-yellow-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-yellow-400"}
+                                                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
                                                         >
                                                             Dashboard
                                                         </NavLink>
                                                     </li>
 
                                                     <li>
-                                                        <button onClick={handleLogOut} className="btn-ghost inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-yellow-400 hover:bg-yellow-700 focus:shadow-outline focus:outline-none " aria-label="Log Out" title="Log Out">Log Out</button>
+                                                        <button onClick={handleLogOut} className="btn-ghost inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-teal-400 hover:bg-teal-700 focus:shadow-outline focus:outline-none " aria-label="Log Out" title="Log Out">Log Out</button>
                                                     </li>
                                                 </>
                                                 :
                                                 <li>
                                                     <NavLink
                                                         to="/signin"
-                                                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-yellow-400 hover:bg-yellow-700 focus:shadow-outline focus:outline-none"
+                                                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-teal-400 hover:bg-teal-700 focus:shadow-outline focus:outline-none"
                                                         aria-label="Sign in"
                                                         title="Sign in"
                                                     >
