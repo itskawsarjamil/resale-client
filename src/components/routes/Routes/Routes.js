@@ -5,7 +5,8 @@ import ErrorPage from '../../pages/Shared/ErrorPage/ErrorPage';
 import Home from '../../pages/Home/Home/Home';
 import About from '../../pages/About/About';
 import Blog from '../../pages/Blog/Blog';
-import Categories from '../../pages/Categories/Categories';
+import CategoryBooks from '../../pages/CategoryBooks/CategoryBooks';
+import Dashboard from '../../pages/Dashboard/Dashboard/Dashboard';
 
 const routes = createBrowserRouter([
     {
@@ -22,6 +23,11 @@ const routes = createBrowserRouter([
                 element: <Home></Home>,
             },
             {
+                path: '/categorybooks/:id',
+                element: <CategoryBooks></CategoryBooks>,
+                loader: ({ params }) => fetch(`http://localhost:5000/CategoryBooks/${params.id}`),
+            },
+            {
                 path: '/about',
                 element: <About></About>,
             },
@@ -30,12 +36,8 @@ const routes = createBrowserRouter([
                 element: <Blog></Blog>,
             },
             {
-                path: '/categories',
-                element: <Categories />,
-            },
-            {
                 path: '/dashboard',
-                element: <Categories />,
+                element: <Dashboard />,
             },
         ]
     }

@@ -7,7 +7,7 @@ const HomeCategories = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         const axiosCall = async () => {
-            const res = await axios.get('categories.json');
+            const res = await axios.get('http://localhost:5000/Categories');
             setCategories(res.data);
         }
         axiosCall();
@@ -18,7 +18,7 @@ const HomeCategories = () => {
         <div>
             <div className="md:flex gap-10 mx-auto w-fit rounded-box my-10 md:my-16">
                 {
-                    categories.map(category => <HomeCategory key={category.id} category={category}></HomeCategory>)
+                    categories.map(category => <HomeCategory key={category._id} category={category}></HomeCategory>)
                 }
 
             </div>

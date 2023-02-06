@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../../../context/AuthContext/AuthProvider";
 import logo from "../../../assets/logo/resalelogo.png";
+import DropDown from "./DropDown";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,14 +41,8 @@ const Header = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink
-                            to="/services"
-                            aria-label="Our services"
-                            title="Our services"
-                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
-                        >
-                            Services
-                        </NavLink>
+                        <DropDown></DropDown>
+                        
                     </li>
 
                     <li>
@@ -181,14 +176,8 @@ const Header = () => {
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink
-                                                to="/services"
-                                                aria-label="Our services"
-                                                title="Our services"
-                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
-                                            >
-                                                Services
-                                            </NavLink>
+                                            <DropDown></DropDown>
+                                            
                                         </li>
 
                                         <li>

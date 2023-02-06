@@ -1,23 +1,20 @@
 [
     {
-        "id": 1,
-        "title": "Art & Collectibles",
+        "category_name": "Art & Collectibles",
         "img": "https://i.ibb.co/6ywZkzQ/cat1.jpg",
-        "total": 3,
-        "description": "Collectibles art conveys unique messages about the world around us. Shop books and obtain guidance from experts in the art world to build your collection."
+        "description": "Collectibles art conveys unique messages about the world around us. Shop books and obtain guidance from experts in the art world to build your collection.",
+        "total": 2
     },
     {
-        "id": 2,
-        "title": "Fiction",
+        "category_name": "Fiction",
         "img": "https://i.ibb.co/b22FL0R/cat2.webp",
         "description": "Welcome to resale's collections of fiction and mystery novels, a seedy underworld of thrillers",
-        "total": 3
+        "total": 2
     },
     {
-        "id": 3,
-        "title": "Non Fiction",
+        "category_name": "Non Fiction",
         "img": "https://i.ibb.co/G2n1pbn/cat3.jpg",
         "description": "Are you looking for autobiography, memoir and biography books? You'll appreciate browsing these collections.",
-        "total": 3
+        "total": 1
     }
 ]
