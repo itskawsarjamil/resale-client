@@ -5,6 +5,7 @@ import ErrorPage from '../../pages/Shared/ErrorPage/ErrorPage';
 import Home from '../../pages/Home/Home/Home';
 import About from '../../pages/About/About';
 import Blog from '../../pages/Blog/Blog';
+import Categories from '../../pages/Categories/Categories';
 
 const routes = createBrowserRouter([
     {
@@ -27,6 +28,14 @@ const routes = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>,
+            },
+            {
+                path: '/categories',
+                element: <Categories />,
+            },
+            {
+                path: '/dashboard',
+                element: <Categories />,
             },
         ]
     }

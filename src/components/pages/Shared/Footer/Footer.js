@@ -21,7 +21,7 @@ const Footer = () => {
                         </Link>
                         <div className="mt-6 lg:max-w-sm">
                             <p className="text-sm text-gray-800">
-                                Just try once...!!<br></br>You will find Out...(: )..
+                                What is a good Story of a book...!!<br></br>Let's find Out...( : ] )..
                             </p>
                         </div>
                     </div>
@@ -65,7 +65,7 @@ const Footer = () => {
                             </a>
                         </div>
                     </div>
-                    <div>
+                    <div className="flex flex-col items-center justify-center">
                         <span className="text-base font-bold tracking-wide text-gray-900">
                             Social
                         </span>
