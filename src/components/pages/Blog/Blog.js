@@ -99,7 +99,7 @@ const Blog = () => {
                         </p>
                     </div> */}
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-4 text-black">
                     <Item title="Difference between SQL and NoSQL">
                         SQL databases are primarily called as Relational Databases (RDBMS); whereas NoSQL database are primarily called as non-relational or distributed database.SQL databases are table-based on the other hand NoSQL databases are either key-value pairs, document-based, graph databases or wide-column stores. This makes relational SQL databases a better option for applications that require multi-row transactions such as an accounting system or for legacy systems that were built for a relational structure.
                     </Item>

@@ -5,10 +5,10 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <>
+    <div className='bg-white'>
       <RouterProvider router={routes} />
       <Toaster />
-    </>
+    </div>
   );
 }
 

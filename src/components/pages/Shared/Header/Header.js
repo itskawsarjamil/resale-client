@@ -41,8 +41,8 @@ const Header = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <DropDown></DropDown>
-                        
+                        <DropDown setIsMenuOpen={setIsMenuOpen}></DropDown>
+
                     </li>
 
                     <li>
@@ -135,7 +135,7 @@ const Header = () => {
                             <div className="p-5 bg-white border rounded shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
-                                        <NavLink
+                                        <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)}
                                             to="/"
                                             aria-label="Company"
                                             title="Company"
@@ -166,7 +166,7 @@ const Header = () => {
                                 <nav>
                                     <ul className="space-y-4">
                                         <li>
-                                            <NavLink
+                                            <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)}
                                                 to="/home"
                                                 aria-label="Home"
                                                 title="Home"
@@ -176,12 +176,12 @@ const Header = () => {
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <DropDown></DropDown>
-                                            
+                                            <DropDown setIsMenuOpen={setIsMenuOpen}></DropDown>
+
                                         </li>
 
                                         <li>
-                                            <NavLink
+                                            <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)}
                                                 to="/about"
                                                 aria-label="About us"
                                                 title="About us"
@@ -191,7 +191,7 @@ const Header = () => {
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink
+                                            <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)}
                                                 to="/blog"
                                                 aria-label="blog"
                                                 title="blog"
@@ -201,7 +201,7 @@ const Header = () => {
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink
+                                            <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)}
                                                 to="/addservice"
                                                 aria-label="Add Service"
                                                 title="Add Service"
@@ -214,7 +214,7 @@ const Header = () => {
                                             (user && user.uid) ?
                                                 <>
                                                     <li>
-                                                        <NavLink
+                                                        <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)}
                                                             to="/dashboard"
                                                             aria-label="dashboard"
                                                             title="dashboard"
@@ -230,7 +230,7 @@ const Header = () => {
                                                 </>
                                                 :
                                                 <li>
-                                                    <NavLink
+                                                    <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)}
                                                         to="/signin"
                                                         className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-teal-400 hover:bg-teal-700 focus:shadow-outline focus:outline-none"
                                                         aria-label="Sign in"
