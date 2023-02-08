@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import Spinner from "../../../Shared/Spinner/Spinner";
+import { async } from "@firebase/util";
 
 const AllSellers = () => {
     const { data: Sellers = [], isLoading, refetch } = useQuery({
@@ -14,33 +15,18 @@ const AllSellers = () => {
             return data;
         }
     })
-    const handleVerify = (id, email) => {
-        // console.log(email)
-        // fetch(`https://used-phone-server.vercel.app/products?email=${email}`, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ userVerify: true })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //     })
-
-        // fetch(`https://used-phone-server.vercel.app/users/${id}`, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ verify: true })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.modifiedCount > 0) {
-        //             toast.success('Verify successful.')
-        //             refetch()
-        //         }
-        //     })
+    const handleVerify = (email) => {
+        fetch(`http://localhost:5000/sellerverify?mail=${email}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch();
+            })
 
     }
     if (isLoading) {
@@ -62,9 +48,7 @@ const AllSellers = () => {
                     </thead>
                     <tbody>
                         {Sellers?.length ?
-                            Sellers.map((seller, i) => <tr
-                                key={seller._id}
-                            >
+                            Sellers.map((seller, i) => <tr key={seller._id}>
                                 <th>{i + 1}</th>
                                 <td>
 
@@ -81,17 +65,16 @@ const AllSellers = () => {
                                     {
                                         seller.appVerified ?
                                             <label
-                                                onClick={() => handleVerify(seller._id)}
-                                                className="btn btn-sm bg-green-500 text-white hover:bg-green-500"
+                                                className="text-green-500"
                                             >
                                                 Verified </label>
                                             :
 
-                                            <label
-                                                onClick={() => handleVerify(seller._id, seller.email)}
+                                            <div
+                                                onClick={() => handleVerify(seller.email)}
                                                 className="btn btn-sm btn-primary bg-gradient-to-r from-primary to-secondary text-white hover:shadow-secondary hover:shadow-md"
                                             >
-                                                Verify</label>
+                                                Verify</div>
                                     }
 
                                 </td>

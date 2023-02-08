@@ -17,6 +17,7 @@ import Login from '../../pages/Login/Login';
 import Signup from '../../pages/Signup/Signup';
 import Wishlist from '../../pages/Dashboard/Wishlist/Wishlist';
 import AddProduct from '../../pages/Dashboard/AddProduct/AddProduct';
+import MakePayment from '../../pages/Dashboard/MakePayment/MakePayment';
 
 const routes = createBrowserRouter([
     {
@@ -91,6 +92,11 @@ const routes = createBrowserRouter([
             {
                 path: '/dashboard/myproducts',
                 element: <MyProducts />
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <MakePayment />,
+                loader: ({ params }) => fetch(`http://localhost:5000/order/${params.id}`)
             }
         ]
     }

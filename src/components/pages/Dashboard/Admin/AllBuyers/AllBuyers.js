@@ -2,8 +2,8 @@ import { useQuery } from "react-query";
 import Spinner from "../../../Shared/Spinner/Spinner";
 
 const AllBuyers = () => {
-    const { data: Buyers = [], isLoading, refetch } = useQuery({
-        queryKey: ['sellers'],
+    const { data: Buyers = [], isLoading } = useQuery({
+        queryKey: ['buyers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/buyers', {
                 headers: {
@@ -32,9 +32,7 @@ const AllBuyers = () => {
                     </thead>
                     <tbody>
                         {Buyers?.length ?
-                            Buyers.map((buyer, i) => <tr
-                                key={buyer._id}
-                            >
+                            Buyers.map((buyer, i) => <tr key={buyer._id}>
                                 <th>{i + 1}</th>
                                 <td>
 

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { authContext } from "../../../context/AuthContext/AuthProvider";
 import { useQuery } from "react-query";
 import Spinner from "../../Shared/Spinner/Spinner";
+import { Link } from "react-router-dom";
 
 
 const MyOrders = () => {
@@ -37,6 +38,7 @@ const MyOrders = () => {
                             <th>Seller Email</th>
                             <th>Meeting Location</th>
                             <th>Price</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody className="text-white">
@@ -51,7 +53,20 @@ const MyOrders = () => {
                                 <td>{order.seller_email}</td>
                                 <td>{order.location}</td>
                                 <td>{order.bookPrice}</td>
-
+                                <td>
+                                    {
+                                        order.bookPrice && !order.paid && <Link
+                                            to={`/dashboard/payment/${order._id}`}
+                                        >
+                                            <button
+                                                className='btn btn-primary  bg-blue-400'
+                                            >Pay</button>
+                                        </Link>
+                                    }
+                                    {
+                                        order.bookPrice && order.paid && <span className='text-green-500'>Paid</span>
+                                    }
+                                </td>
                             </tr>)
                         }
                     </tbody>
