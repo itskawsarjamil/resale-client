@@ -37,6 +37,24 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 console.log(user);
+                const { displayName, email, photoURL } = user;
+                const userData = {
+                    name: displayName,
+                    email: email,
+                    role: "buyer",
+                    img: photoURL,
+                }
+                fetch('http://localhost:5000/g-users', {
+                    method: "POST",
+                    headers: {
+                        'content-type': "application/json",
+                    },
+                    body: JSON.stringify(userData)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
                 alert("user login succcessfull");
                 // console.log(from);
                 // const currentUser = {
@@ -107,14 +125,14 @@ const Login = () => {
 
                     <div className="grid grid-cols-2 gap-4 mt-2 ">
                         <input type="submit" className="py-1 btn btn-primary" value="Login" />
-                        <Link to="/signup" className="py-1 btn btn-icon btn-google">
+                        <div className="py-1 btn btn-icon btn-google">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="mr-1">
                                 <path
                                     d="M20.283,10.356h-8.327v3.451h4.792c-0.446,2.193-2.313,3.453-4.792,3.453c-2.923,0-5.279-2.356-5.279-5.28	c0-2.923,2.356-5.279,5.279-5.279c1.259,0,2.397,0.447,3.29,1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233	c-4.954,0-8.934,3.979-8.934,8.934c0,4.955,3.979,8.934,8.934,8.934c4.467,0,8.529-3.249,8.529-8.934	C20.485,11.453,20.404,10.884,20.283,10.356z"
                                 />
                             </svg>
-                            <span onClick={handleGooglelogin} className="sr-only">Continue with</span> Google
-                        </Link>
+                            <span onClick={handleGooglelogin} className='text-white'>Google</span>
+                        </div>
                     </div>
 
                 </form>
@@ -123,7 +141,7 @@ const Login = () => {
                         Don't have an account?
                         <Link to="/signup" className="text-purple-700 hover:text-black"> Create an account</Link>
                     </p>
-                   
+
                     <button onClick={handleForgetPassword} className="block text-xs text-purple-700 hover:text-black">Forgot password?</button>
                     <Link to="#" className="block text-xs text-purple-700 hover:text-black">Privacy & Terms</Link>
                 </div>

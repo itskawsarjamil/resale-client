@@ -65,17 +65,6 @@ const Header = () => {
                             Blog
                         </NavLink>
                     </li>
-
-                    <li>
-                        <NavLink
-                            to="/addservice"
-                            aria-label="Add Service"
-                            title="Add Service"
-                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
-                        >
-                            Add Service
-                        </NavLink>
-                    </li>
                     {
                         (user && user.uid) ?
                             <>
@@ -200,16 +189,7 @@ const Header = () => {
                                                 Blog
                                             </NavLink>
                                         </li>
-                                        <li>
-                                            <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                                to="/addservice"
-                                                aria-label="Add Service"
-                                                title="Add Service"
-                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-700 transition-colors duration-200 hover:text-teal-400" : "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-400"}
-                                            >
-                                                Add Service
-                                            </NavLink>
-                                        </li>
+                                        
                                         {
                                             (user && user.uid) ?
                                                 <>

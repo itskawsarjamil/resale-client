@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, json, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../context/AuthContext/AuthProvider';
 import { toast } from 'react-hot-toast';
 
@@ -24,43 +24,55 @@ const Signup = () => {
         // console.log(e.image[0]);
         const img = e.image[0];
         formData.append('image', img);
-        // const url = `https://api.imgbb.com/1/upload?key=${imghostkey}`;
-        // fetch(url, {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        //     .then(res => res.json())
-        //     .then(imgData => {
-        //         const imgurl = imgData.data.image.url;
-        //         // const userData = {
-        //         //     name: e.name,
-        //         //     email: e.email,
-        //         //     role: e.role,
-        //         //     img: imgurl
-        //         // }
-        //         // console.log(userData);
-
-
-        //     })
-
-        signup(e.email, e.password)
-            .then((userCredential) => {
-                toast.success("profile created");
-                const user = userCredential.user;
-                console.log(user);
-                modifyInfo({
-                    displayName: e.name,
-                    // photoURL: imgurl,
-                })
-                    .then(() => {
-                        toast.success("profile updated");
-                        navigate(from, { replace: true });
+        const url = `https://api.imgbb.com/1/upload?key=${imghostkey}`;
+        fetch(url, {
+            method: "POST",
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                const imgurl = imgData.data.image.url;
+                const userData = {
+                    name: e.name,
+                    email: e.email,
+                    role: e.role,
+                    img: imgurl,
+                    appVerified: false
+                }
+                // console.log(userData);
+                signup(e.email, e.password)
+                    .then((userCredential) => {
+                        toast.success("profile created");
+                        const user = userCredential.user;
+                        // console.log(user);
+                        modifyInfo({
+                            displayName: e.name,
+                            photoURL: imgurl,
+                        })
+                            .then(() => {
+                                toast.success("profile updated");
+                                fetch('http://localhost:5000/users', {
+                                    method: "POST",
+                                    headers: {
+                                        'content-type': "application/json",
+                                    },
+                                    body: JSON.stringify(userData)
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        // console.log(data);
+                                    })
+                                navigate(from, { replace: true });
+                            })
                     })
+                    .catch((err) => {
+                        console.log(err);
+                        setError(err.message);
+                    })
+
             })
-            .catch((err) => {
-                console.log(err);
-                setError(err.message);
-            })
+
+
 
     }
 
@@ -71,6 +83,24 @@ const Signup = () => {
                 const user = res.user;
                 console.log(user);
                 alert("user login succcessfull");
+                const { displayName, email, photoURL } = user;
+                const userData = {
+                    name: displayName,
+                    email: email,
+                    role: "buyer",
+                    img: photoURL,
+                }
+                fetch('http://localhost:5000/g-users', {
+                    method: "POST",
+                    headers: {
+                        'content-type': "application/json",
+                    },
+                    body: JSON.stringify(userData)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
                 navigate(from, { replace: true });
             })
     }
@@ -90,7 +120,7 @@ const Signup = () => {
                     </button>
                     <p className="my-8 text-xs font-medium text-center text-gray-700">
                         By clicking "Continue with Google" you agree to become a
-                        <span className="text-purple-700"> Seller </span>
+                        <span className="text-purple-700"> Buyer </span>
                     </p>
                 </div>
                 <form onSubmit={handleSubmit(handleInput)} className="space-y-4 w-full">
@@ -138,7 +168,7 @@ const Signup = () => {
 
 
 
-                    {/* <label className="block">
+                    <label className="block">
                         <span className="block mb-1 text-xl font-bold  text-gray-500">Enter Your Image</span>
                         <input {...register("image", {
                             required: "Please Enter your image",
@@ -147,8 +177,8 @@ const Signup = () => {
                         {
                             errors.image && <span className='text-red-500'>{errors.image.message}</span>
                         }
-                    </label> */}
-                    <select defaultValue={"seller"} {...register("role")} className='text-black bg-white w-full px-5 py-2 border  focus:border-black focus:shadow-lg' >
+                    </label>
+                    <select defaultValue={"buyer"} {...register("role")} className='text-black bg-white w-full px-5 py-2 border  focus:border-black focus:shadow-lg' >
                         <option value="buyer">Buyer</option>
                         <option value="seller">Seller</option>
                     </select>
