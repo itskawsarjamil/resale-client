@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaCheckCircle, FaUser } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
@@ -7,15 +7,15 @@ import { useQuery } from 'react-query';
 
 
 
-const Product = ({ product }) => {
+const Product = ({ product, handleDeleteProduct, handleAdvertise }) => {
     // const { , booked,time, advertise } = product;
     const { user } = useContext(authContext);
-    const { book_img, _id, book_title, seller_email, seller_price, used, original_price, location, condition, description,post_date,post_time } = product;
+    const { book_img, _id, book_title, seller_email, seller_price, used, original_price, location, condition, description, post_date, post_time, adv } = product;
     const { displayName, photoURL, } = user;
     // console.log(user);
     // console.log(product);
 
-    const {  data: userDetail = [] } = useQuery({
+    const { data: userDetail = [] } = useQuery({
         queryKey: ["userDetail"],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/sellerDetail?email=${seller_email}`);
@@ -23,7 +23,19 @@ const Product = ({ product }) => {
             return data;
         }
     })
+    const [isSold, setIsSold] = useState(false);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/issold/${_id}`)
+            .then(res => res.json())
+            .then(data => setIsSold(data))
+    }, [_id]);
+
     const { appVerified } = userDetail;
+
+
+
+
     return (
         <div>
             <div className="card bg-base-100 border shadow-xl" >
@@ -67,35 +79,34 @@ const Product = ({ product }) => {
                         <h4 className="card-title">Resale Price:<span style={{ color: 'darkorange' }}>{seller_price} TK</span></h4>
                         <h4 className="card-title">Original Price: {original_price} TK</h4>
                     </div>
-                    {/* <div className="card-actions justify-between">
+                    <div className="card-actions justify-between">
                         {
-                            booked ?
+                            isSold ?
                                 <button
                                     className="badge badge-outline bg-green-500 px-5 text-white hover:shadow-green-500 hover:shadow-md">
                                     Sold
                                 </button>
                                 :
                                 <>{
-                                    advertise ?
+                                    adv ?
                                         <button
                                             className="badge badge-outline px-5 text-red-500 hover:shadow-secondary hover:shadow-md">
                                             Off Advertise
                                         </button>
                                         :
                                         <button
-                                            // onClick={() => handleAdvertise(_id)}
+                                            onClick={() => handleAdvertise(_id)}
                                             className="badge badge-outline px-5 text-blue-900 hover:shadow-secondary hover:shadow-md">
                                             Advertise
                                         </button>
                                 }</>
-
                         }
                         <label
                             htmlFor="confirmation-modal"
-                            // onClick={() => setDeletingProduct(product)}
+                            onClick={() => handleDeleteProduct(_id)}
                             className="badge badge-outline px-5 text-blue-900 hover:shadow-secondary hover:shadow-md"
                         >Delete</label>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>
