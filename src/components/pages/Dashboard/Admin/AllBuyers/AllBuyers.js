@@ -1,9 +1,58 @@
-import React from 'react';
+import { useQuery } from "react-query";
+import Spinner from "../../../Shared/Spinner/Spinner";
 
 const AllBuyers = () => {
+    const { data: Buyers = [], isLoading, refetch } = useQuery({
+        queryKey: ['sellers'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/buyers', {
+                headers: {
+                    // authorization: `bearer ${localStorage.getItem('usePhonsToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    })
+    if (isLoading) {
+        return <Spinner />
+    }
     return (
-        <div>
-            All Buyer
+        <div className='mb-36'>
+            <h2 className="text-3xl text-center bg-slate-900 text-white py-6">Total Buyer: {Buyers?.length}</h2>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>picture</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Buyers?.length ?
+                            Buyers.map((buyer, i) => <tr
+                                key={buyer._id}
+                            >
+                                <th>{i + 1}</th>
+                                <td>
+
+                                    <div className="avatar">
+                                        <div className="w-11 rounded-full hover:shadow-md hover:shadow-primary">
+                                            <img src={buyer.img} alt='' />
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td>{buyer.name}</td>
+                                <td>{buyer.email}</td>
+
+                            </tr>) : ''
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

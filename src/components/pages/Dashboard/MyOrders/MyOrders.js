@@ -1,9 +1,62 @@
-import React from 'react';
+import { useContext } from "react";
+import { authContext } from "../../../context/AuthContext/AuthProvider";
+import { useQuery } from "react-query";
+import Spinner from "../../Shared/Spinner/Spinner";
+
 
 const MyOrders = () => {
+    const { user } = useContext(authContext)
+    // console.log(user);
+    const { data: myOrders = [], isLoading } = useQuery({
+        queryKey: ['orders', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/orders?email=${user.email}`, {
+                headers: {
+                    // authorization: `bearer ${localStorage.getItem('usePhonsToken')}`
+                }
+            });
+            const data = res.json();
+            return data;
+        }
+    })
+
+    if (isLoading) {
+        return <Spinner />;
+    }
+    // console.log(myOrders);
     return (
-        <div>
-            My Orders
+        <div className=' mb-36 min-h-screen bg-white text-black'>
+            <h2 className="text-3xl text-center bg-white text-black py-6">Total Order: {myOrders?.length}</h2>
+            <div className="bg-white text-black">
+                <table className="table w-full bg-white text-black">
+                    <thead className=" text-white">
+                        <tr className="mr-6 text-white">
+                            <th></th>
+                            <th>Product Name</th>
+                            <th>Seller Name</th>
+                            <th>Seller Email</th>
+                            <th>Meeting Location</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-white">
+                        {myOrders?.length &&
+                            myOrders.map((order, i) => <tr
+                                key={order._id}
+                                className="hover  text-white"
+                            >
+                                <th>{i + 1}</th>
+                                <td>{order.bookTitle}</td>
+                                <td>{order.seller_name}</td>
+                                <td>{order.seller_email}</td>
+                                <td>{order.location}</td>
+                                <td>{order.bookPrice}</td>
+
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

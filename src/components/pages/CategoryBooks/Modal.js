@@ -4,7 +4,7 @@ import Spinner from '../Shared/Spinner/Spinner';
 import { authContext } from '../../context/AuthContext/AuthProvider';
 import { toast } from 'react-hot-toast';
 const Modal = ({ orderBook, setOrderBook }) => {
-    const { book_title, original_price, seller_price, location, post_date, used, condition, contact, seller_email, _id } = orderBook;
+    const { book_title, seller_price, seller_email, _id } = orderBook;
 
     const { user } = useContext(authContext);
     const { isLoading, data: sellerDetail = {} } = useQuery({
@@ -19,7 +19,8 @@ const Modal = ({ orderBook, setOrderBook }) => {
     if (isLoading) {
         return <Spinner />;
     }
-    const { appVerified, email } = sellerDetail;
+    const { appVerified, email, name: seller_name } = sellerDetail;
+    // console.log(sellerDetail);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,7 +37,10 @@ const Modal = ({ orderBook, setOrderBook }) => {
             bookTitle,
             bookPrice,
             phone,
-            location
+            location,
+            seller_name,
+            seller_email,
+            product_id: _id
         }
         // console.log(orderData);
 

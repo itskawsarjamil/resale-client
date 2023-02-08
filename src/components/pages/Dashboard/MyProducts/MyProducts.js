@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
 import Spinner from '../../Shared/Spinner/Spinner';
 import Product from './Product';
+import { authContext } from '../../../context/AuthContext/AuthProvider';
 
 const MyProducts = () => {
+    const { user } = useContext(authContext);
     const { isLoading, data: Products = [] } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
-            const res = await fetch("");
+            const res = await fetch(`http://localhost:5000/books?email=${user.email}`);
             const data = await res.json();
             return data;
         }
@@ -16,27 +18,29 @@ const MyProducts = () => {
     if (isLoading) {
         return <Spinner />;
     }
-    console.log(Products);
+    // console.log(Products);
     return (
-        <div>
-            <h2>My Products</h2>
-            {
-                Products.map(product => <Product key={product._id} product={product}></Product>)
-            }
+        <div className='max-w-[1440px] min-h-screen mx-auto my-14'>
+            <h1 className='text-center text-4xl mt-8 py-4'>Total Products: {Products?.length}</h1>
+
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-20  mx-9 lg:mx-0'>
+                {Products?.length &&
+                    Products.map(product => <Product
+                        key={product._id}
+                        product={product}
+                        // setDeletingProduct={setDeletingProduct}
+                        // handleAdvertise={handleAdvertise}
+                    >
+                    </Product>)
+                }
+            </div>
+
         </div>
     );
 };
 
 export default MyProducts;
 
-
-// import { useQuery } from '@tanstack/react-query';
-// import React, { useContext, useState } from 'react';
-// import { AuthContext } from '../../contexts/AuthProvider';
-// import Loading from '../../components/Loading/Loading';
-// import Product from './Product';
-// import ConfirmationModal from '../Shared/ConfirmationModal/ConfirmationModal';
-// import toast from 'react-hot-toast';
 
 // const MyProducts = () => {
 //     const { user } = useContext(AuthContext)
@@ -79,7 +83,7 @@ export default MyProducts;
 //                 }
 //             })
 //     }
-//     // product delete handler 
+//     // product delete handler
 //     const handleDeleteProduct = (product) => {
 //         console.log(product._id)
 //         fetch(`https://used-phone-server.vercel.app/products/${product._id}`, {
