@@ -4,10 +4,11 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { authContext } from '../../../context/AuthContext/AuthProvider';
 import { useQuery } from 'react-query';
+import { toast } from 'react-hot-toast';
 
 
 
-const Product = ({ product, handleDeleteProduct, handleAdvertise }) => {
+const Product = ({ product, handleDeleteProduct, handleAdvertise, handleOffAdvertise }) => {
     // const { , booked,time, advertise } = product;
     const { user } = useContext(authContext);
     const { book_img, _id, book_title, seller_email, seller_price, used, original_price, location, condition, description, post_date, post_time, adv } = product;
@@ -89,7 +90,7 @@ const Product = ({ product, handleDeleteProduct, handleAdvertise }) => {
                                 :
                                 <>{
                                     adv ?
-                                        <button
+                                        <button onClick={() => handleOffAdvertise(_id)}
                                             className="badge badge-outline px-5 text-red-500 hover:shadow-secondary hover:shadow-md">
                                             Off Advertise
                                         </button>

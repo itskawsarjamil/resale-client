@@ -19,8 +19,8 @@ const MyProducts = () => {
     if (isLoading) {
         return <Spinner />;
     }
-    const handleAdvertise = (id) => {
-        fetch(``, {
+    const handleOffAdvertise = (id) => {
+        fetch(`http://localhost:5000/offadv/${id}`, {
             method: "POST",
             headers: {
                 'content-type': "application/json",
@@ -29,8 +29,27 @@ const MyProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
+                // console.log(data);
+                if (data.acknowledged) {
+                    toast.success("product has been removed from advertised");
+                    refetch();
+                }
+            })
+    }
+    const handleAdvertise = (id) => {
+        fetch(`http://localhost:5000/adv/${id}`, {
+            method: "POST",
+            headers: {
+                'content-type': "application/json",
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
                 if (data.acknowledged) {
                     toast.success("product has been added to advertised");
+                    refetch();
                 }
             })
     }
@@ -66,6 +85,7 @@ const MyProducts = () => {
                         product={product}
                         handleDeleteProduct={handleDeleteProduct}
                         handleAdvertise={handleAdvertise}
+                        handleOffAdvertise={handleOffAdvertise}
                     >
                     </Product>)
                 }

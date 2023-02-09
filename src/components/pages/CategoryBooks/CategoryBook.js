@@ -1,6 +1,7 @@
 import React from 'react';
 import Spinner from '../Shared/Spinner/Spinner';
 import { useQuery } from 'react-query';
+import { toast } from 'react-hot-toast';
 
 const CategoryBook = ({ book, setOrderBook, setSellerMail }) => {
     const { category_name, book_title, book_img, description, original_price, seller_price, location, post_date, seller_name, used, condition, contact, isVerified, seller_email } = book;
@@ -17,7 +18,7 @@ const CategoryBook = ({ book, setOrderBook, setSellerMail }) => {
     if (isLoading) {
         return <Spinner />;
     }
-    const { appVerified,name } = sellerDetail;
+    const { appVerified, name } = sellerDetail;
     // console.log(sellerDetail);
 
     const handleClick = () => {
@@ -26,6 +27,22 @@ const CategoryBook = ({ book, setOrderBook, setSellerMail }) => {
         setSellerMail(seller_email);
     }
 
+    const handleWishList = () => {
+        fetch(`http://localhost:5000/wishlist/${book._id}`, {
+            method: "POST",
+            headers: {
+                'content-type': "application/json",
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.acknowledged)
+                {
+                    toast.success("added to wishlist"); 
+                }
+            })
+        // console.log(book._id);
+    }
     return (
         <div className="hero bg-base-200 mb-10">
             <div className="hero-content flex-col md:flex-row">
@@ -45,10 +62,15 @@ const CategoryBook = ({ book, setOrderBook, setSellerMail }) => {
                     </div>
 
                     <p className="">{description}</p>
-                    <label onClick={() => {
-                        setOrderBook(book);
-                        setSellerMail(seller_email);
-                    }} htmlFor="my-modal" className="btn btn-primary mt-4">Buy Now!</label>
+
+                    <div className='flex w-full gap-2'>
+                        <label onClick={() => {
+                            setOrderBook(book);
+                            setSellerMail(seller_email);
+                        }} htmlFor="my-modal" className="btn btn-primary mt-4">Buy Now!</label>
+                        <button onClick={() => handleWishList()} htmlFor="my-modal"  className="btn btn-accent mt-4">wishlist</button>
+
+                    </div>
                 </div>
             </div>
         </div>

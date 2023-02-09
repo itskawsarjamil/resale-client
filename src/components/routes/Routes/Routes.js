@@ -15,11 +15,11 @@ import MyOrders from '../../pages/Dashboard/MyOrders/MyOrders';
 import MyProducts from '../../pages/Dashboard/MyProducts/MyProducts';
 import Login from '../../pages/Login/Login';
 import Signup from '../../pages/Signup/Signup';
-import Wishlist from '../../pages/Dashboard/Wishlist/Wishlist';
 import AddProduct from '../../pages/Dashboard/AddProduct/AddProduct';
 import MakePayment from '../../pages/Dashboard/MakePayment/MakePayment';
 import SellerRoute from '../SellerRoutes/SellerRoute';
 import AdminRoute from '../AdminRoutes/AdminRoute';
+import Wishlists from '../../pages/Dashboard/Wishlist/Wishlists';
 
 const routes = createBrowserRouter([
     {
@@ -77,7 +77,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/mywishlist',
-                element: <Wishlist />
+                element: <Wishlists />
             },
             {
                 path: '/dashboard/allbuyers',

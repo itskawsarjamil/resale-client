@@ -17,7 +17,7 @@ const Slider = () => {
     const { isLoading, data: adv = [] } = useQuery({
         queryKey: ["adv"],
         queryFn: async () => {
-            const res = await fetch('');
+            const res = await fetch('http://localhost:5000/adv');
             const data = await res.json();
             return data;
         }
@@ -37,9 +37,9 @@ const Slider = () => {
                 modules={[Pagination]}
                 className="mySwiper my-10 md:my-16"
             >
-                <SwiperSlide ><img src={bc1} className='lg:h-96' alt='' /> </SwiperSlide>
+                {/* <SwiperSlide ><img src={bc1} className='lg:h-96' alt='' /> </SwiperSlide> */}
                 {
-                    adv.map(ad => <SwiperSlide key={ad._id}><img src={ad.img} className='lg:h-96' alt='' /> </SwiperSlide>)
+                    adv.map(ad => <SwiperSlide key={ad._id}><img src={ad.book_img} className='lg:h-96' alt='' /> </SwiperSlide>)
                 }
 
             </Swiper>
