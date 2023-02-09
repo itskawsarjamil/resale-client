@@ -18,6 +18,8 @@ import Signup from '../../pages/Signup/Signup';
 import Wishlist from '../../pages/Dashboard/Wishlist/Wishlist';
 import AddProduct from '../../pages/Dashboard/AddProduct/AddProduct';
 import MakePayment from '../../pages/Dashboard/MakePayment/MakePayment';
+import SellerRoute from '../SellerRoutes/SellerRoute';
+import AdminRoute from '../AdminRoutes/AdminRoute';
 
 const routes = createBrowserRouter([
     {
@@ -67,11 +69,11 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/profile',
-                element: <Profile />,
+                element: <Profile />
             },
             {
                 path: '/dashboard/addproduct',
-                element: <AddProduct />
+                element: <SellerRoute><AddProduct /></SellerRoute>
             },
             {
                 path: '/dashboard/mywishlist',
@@ -79,11 +81,11 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/allbuyers',
-                element: <AllBuyers />
+                element: <AdminRoute><AllBuyers /></AdminRoute>
             },
             {
                 path: '/dashboard/allsellers',
-                element: <AllSeller />
+                element: <AdminRoute> <AllSeller /></AdminRoute>
             },
             {
                 path: '/dashboard/myorders',
@@ -91,7 +93,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/myproducts',
-                element: <MyProducts />
+                element: <SellerRoute><MyProducts /></SellerRoute>
             },
             {
                 path: '/dashboard/payment/:id',

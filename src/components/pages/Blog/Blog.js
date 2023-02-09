@@ -64,57 +64,21 @@ const Blog = () => {
                             </svg>
                         </div>
                     </a>
-                    {/* <div className="max-w-xl md:mx-auto sm:text-center lg:max-w-2xl">
-                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-                            <span className="relative inline-block">
-                                <svg
-                                    viewBox="0 0 52 24"
-                                    fill="currentColor"
-                                    className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
-                                >
-                                    <defs>
-                                        <pattern
-                                            id="ec5d8ef5-b853-4714-b94f-df28ec98eeb7"
-                                            x="0"
-                                            y="0"
-                                            width=".135"
-                                            height=".30"
-                                        >
-                                            <circle cx="1" cy="1" r=".7" />
-                                        </pattern>
-                                    </defs>
-                                    <rect
-                                        fill="url(#ec5d8ef5-b853-4714-b94f-df28ec98eeb7)"
-                                        width="52"
-                                        height="24"
-                                    />
-                                </svg>
-                                <span className="relative">The</span>
-                            </span>{' '}
-                            quick, brown fox jumps over a lazy dog
-                        </h2>
-                        <p className="text-base text-gray-700 md:text-lg">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                            accusantium doloremque rem aperiam, eaque ipsa quae.
-                        </p>
-                    </div> */}
+
                 </div>
                 <div className="space-y-4 text-black">
-                    <Item title="Difference between SQL and NoSQL">
-                        SQL databases are primarily called as Relational Databases (RDBMS); whereas NoSQL database are primarily called as non-relational or distributed database.SQL databases are table-based on the other hand NoSQL databases are either key-value pairs, document-based, graph databases or wide-column stores. This makes relational SQL databases a better option for applications that require multi-row transactions such as an accounting system or for legacy systems that were built for a relational structure.
+                    <Item title="What are the different ways to manage a state in a React application?">
+                        React's useState is the best option for local state management. If you need a global state solution, the most popular ones are Redux, useReducerHook, MobX, and the built-in Context API. Your choice will depend on the size of your project, your needs, and your engineers' expertise.
                     </Item>
-                    <Item title="What is JWT, and how does it work?">
-                        JSON Web Token (JWT) is an open standard for securely transmitting information between parties as JSON object. It is compact, readable and digitally signed using a private key/ or a public key pair by the Identity Provider(IdP).
-                        Authentication server verifies the credentials and issues a jwt signed using either a secret salt or a private key. User's Client uses the JWT to access protected resources by passing the JWT in HTTP Authorization header. Resource server then verifies the authenticity of the token using the secret salt/ public key.
+                    <Item title="How does prototypical inheritance work?">
+                        The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object.
                     </Item>
-                    <Item title="What is the difference between javascript and NodeJS?">
-                        Javascript is a Scripting language. It is mostly abbreviated as JS. It can be said that Javascript is the updated version of the ECMA script. Javascript is a high-level programming language that uses the concept of Oops but it is based on prototype inheritance.
-
-
-                        NodeJS is a cross-platform and opensource Javascript runtime environment that allows the javascript to be run on the server-side. Nodejs allows Javascript code to run outside the browser. Nodejs comes with a lot of modules and mostly used in web development.
+                    <Item title="What is a unit test? Why should we write unit tests?">
+                        Unit test: Unit Testing is a type of software testing where individual units or components of a software are tested.
+                        Unit testing ensures that all code meets quality standards before its deployed. This ensures a reliable engineering environment where quality
                     </Item>
-                    <Item title="How does NodeJS handle multiple requests at the same time?">
-                        NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them. EventLoop is the listener for the EventQueue.
+                    <Item title="React vs. Angular vs. Vue?">
+                        Angular js has two way data binding where react has one way and vue has two way.Angular is written in TypeScript, which means you need some time to learn it to work with this framework. React uses JSX and native Javascript developers are familiar with it. The training period is easier and does not require that much preparation. Vue.js makes use of an HTML-based template syntax that allows you to link the displayed DOM to the data of the base element instance declaratively
                     </Item>
                 </div>
             </div>
