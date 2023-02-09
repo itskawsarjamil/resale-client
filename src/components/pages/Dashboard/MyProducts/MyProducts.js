@@ -20,7 +20,19 @@ const MyProducts = () => {
         return <Spinner />;
     }
     const handleAdvertise = (id) => {
-        console.log(id);
+        fetch(``, {
+            method: "POST",
+            headers: {
+                'content-type': "application/json",
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success("product has been added to advertised");
+                }
+            })
     }
     // product delete handler
     const handleDeleteProduct = (_id) => {

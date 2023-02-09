@@ -10,8 +10,21 @@ import bc2 from "../../../assets/bookcover/book2.jpg";
 import bc3 from "../../../assets/bookcover/book3.jpg";
 import bc4 from "../../../assets/bookcover/book4.jpg";
 import bc5 from "../../../assets/bookcover/book5.jpg";
+import { useQuery } from 'react-query';
+import Spinner from '../../Shared/Spinner/Spinner';
 
 const Slider = () => {
+    const { isLoading, data: adv = [] } = useQuery({
+        queryKey: ["adv"],
+        queryFn: async () => {
+            const res = await fetch('');
+            const data = await res.json();
+            return data;
+        }
+    })
+    if (isLoading) {
+        return <Spinner />;
+    }
     return (
         <>
             <Swiper
@@ -24,11 +37,10 @@ const Slider = () => {
                 modules={[Pagination]}
                 className="mySwiper my-10 md:my-16"
             >
-                <SwiperSlide><img src={bc1} className='lg:h-96' alt='' /> </SwiperSlide>
-                <SwiperSlide><img src={bc2} className='lg:h-96' alt='' /> </SwiperSlide>
-                <SwiperSlide><img src={bc3} className='lg:h-96' alt='' /> </SwiperSlide>
-                <SwiperSlide><img src={bc4} className='lg:h-96' alt='' /> </SwiperSlide>
-                <SwiperSlide><img src={bc5} className='lg:h-96' alt='' /> </SwiperSlide>
+                <SwiperSlide ><img src={bc1} className='lg:h-96' alt='' /> </SwiperSlide>
+                {
+                    adv.map(ad => <SwiperSlide key={ad._id}><img src={ad.img} className='lg:h-96' alt='' /> </SwiperSlide>)
+                }
 
             </Swiper>
         </>
