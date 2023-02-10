@@ -3,9 +3,11 @@ import { useLoaderData, useNavigation } from 'react-router-dom';
 import CategoryBook from './CategoryBook';
 import Modal from './Modal';
 import Spinner from '../Shared/Spinner/Spinner';
+import useTitle from '../../hooks/useTitle';
 
 
 const CategoryBooks = () => {
+    useTitle("Products")
     const navigation = useNavigation();
     const data = useLoaderData();
     const [books, setBooks] = useState(data);

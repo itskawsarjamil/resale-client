@@ -4,8 +4,10 @@ import logo from '../../assets/logo/resalelogo.png';
 import { authContext } from '../../context/AuthContext/AuthProvider';
 import { useForm } from 'react-hook-form';
 import useToken from '../../hooks/useToken';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
+    useTitle("Login");
 
     const { register, handleSubmit, formState: { errors }, watch, } = useForm({
         email: null,
@@ -55,7 +57,7 @@ const Login = () => {
                     role: "buyer",
                     img: photoURL,
                 }
-                fetch('http://localhost:5000/g-users', {
+                fetch('https://resale-server-murex.vercel.app/g-users', {
                     method: "POST",
                     headers: {
                         'content-type': "application/json",
@@ -70,7 +72,7 @@ const Login = () => {
                 const currentUser = {
                     email: user.email
                 }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://resale-server-murex.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -101,7 +103,7 @@ const Login = () => {
                 const currentUser = {
                     email: user.email
                 }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://resale-server-murex.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -38,7 +38,7 @@ const routes = createBrowserRouter([
             {
                 path: '/categorybooks/:id',
                 element: <PrivateRoutes><CategoryBooks></CategoryBooks></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/CategoryBooks/${params.id}`),
+                loader: ({ params }) => fetch(`https://resale-server-murex.vercel.app/CategoryBooks/${params.id}`),
             },
             {
                 path: '/about',
@@ -98,7 +98,7 @@ const routes = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <MakePayment />,
-                loader: ({ params }) => fetch(`http://localhost:5000/order/${params.id}`)
+                loader: ({ params }) => fetch(`https://resale-server-murex.vercel.app/order/${params.id}`)
             }
         ]
     }

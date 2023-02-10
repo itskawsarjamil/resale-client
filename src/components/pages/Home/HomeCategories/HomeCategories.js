@@ -7,7 +7,7 @@ const HomeCategories = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         const axiosCall = async () => {
-            const res = await axios.get('http://localhost:5000/Categories');
+            const res = await axios.get('https://resale-server-murex.vercel.app/Categories');
             setCategories(res.data);
         }
         axiosCall();

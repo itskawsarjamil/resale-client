@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { toast } from "react-hot-toast";
+import useTitle from "../../../hooks/useTitle";
 
 
 const AddProduct = () => {
+    useTitle("Add Product");
     const { user, logout } = useContext(authContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageHostKey = process.env.REACT_APP_imgbb;
@@ -44,7 +46,7 @@ const AddProduct = () => {
                         relevantInformation } = data;
 
 
-                    fetch(`http://localhost:5000/categoryid?catname=${category_name}`)
+                    fetch(`https://resale-server-murex.vercel.app/categoryid?catname=${category_name}`)
                         .then(res => res.json())
                         .then(catidobj => {
                             const product = {
@@ -67,7 +69,7 @@ const AddProduct = () => {
                                 adv: false,
 
                             }
-                            fetch('http://localhost:5000/addbook', {
+                            fetch('https://resale-server-murex.vercel.app/addbook', {
                                 method: 'POST',
                                 headers: {
                                     'content-type': 'application/json',
@@ -83,7 +85,7 @@ const AddProduct = () => {
                                 })
                                 .then(result => {
                                     // console.log(result)
-                                    fetch(`http://localhost:5000/addbook?pid=${result.insertedId}`)
+                                    fetch(`https://resale-server-murex.vercel.app/addbook?pid=${result.insertedId}`)
                                         .then(res => res.json())
                                         .then(data => {
                                             // console.log(data);

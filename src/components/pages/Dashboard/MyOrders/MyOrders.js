@@ -3,15 +3,17 @@ import { authContext } from "../../../context/AuthContext/AuthProvider";
 import { useQuery } from "react-query";
 import Spinner from "../../Shared/Spinner/Spinner";
 import { Link } from "react-router-dom";
+import useTitle from "../../../hooks/useTitle";
 
 
 const MyOrders = () => {
+    useTitle("My Orders")
     const { user } = useContext(authContext)
     // console.log(user);
     const { data: myOrders = [], isLoading } = useQuery({
         queryKey: ['orders', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/orders?email=${user.email}`, {
+            const res = await fetch(`https://resale-server-murex.vercel.app/orders?email=${user.email}`, {
                 headers: {
                     // authorization: `bearer ${localStorage.getItem('usePhonsToken')}`
                 }

@@ -1,12 +1,14 @@
 import { useQuery } from "react-query";
 import Spinner from "../../../Shared/Spinner/Spinner";
 import { async } from "@firebase/util";
+import useTitle from "../../../../hooks/useTitle";
 
 const AllSellers = () => {
+    useTitle("Sellers");
     const { data: Sellers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/sellers', {
+            const res = await fetch('https://resale-server-murex.vercel.app/sellers', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -16,7 +18,7 @@ const AllSellers = () => {
         }
     })
     const handleVerify = (email) => {
-        fetch(`http://localhost:5000/sellerverify?mail=${email}`, {
+        fetch(`https://resale-server-murex.vercel.app/sellerverify?mail=${email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

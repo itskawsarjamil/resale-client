@@ -10,7 +10,7 @@ const Modal = ({ orderBook, setOrderBook }) => {
     const { isLoading, data: sellerDetail = {} } = useQuery({
         queryKey: ['sellerdetail'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/sellerDetail?email=${seller_email}`);
+            const res = await fetch(`https://resale-server-murex.vercel.app/sellerDetail?email=${seller_email}`);
             const data = await res.json();
             return data;
         }
@@ -44,7 +44,7 @@ const Modal = ({ orderBook, setOrderBook }) => {
         }
         // console.log(orderData);
 
-        fetch(`http://localhost:5000/orders`, {
+        fetch(`https://resale-server-murex.vercel.app/orders`, {
             method: "POST",
             headers: {
                 'content-type': "application/json",

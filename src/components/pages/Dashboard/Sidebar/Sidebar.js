@@ -6,7 +6,7 @@ const Sidebar = () => {
     const { logout, user } = useContext(authContext);
     const [role, setRole] = useState('buyer');
     useEffect(() => {
-        fetch(`http://localhost:5000/iswhat/${user?.email}`)
+        fetch(`https://resale-server-murex.vercel.app/iswhat/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);

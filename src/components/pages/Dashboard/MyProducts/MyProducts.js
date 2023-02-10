@@ -4,13 +4,15 @@ import Spinner from '../../Shared/Spinner/Spinner';
 import Product from './Product';
 import { authContext } from '../../../context/AuthContext/AuthProvider';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
 
 const MyProducts = () => {
+    useTitle("My Products");
     const { user } = useContext(authContext);
     const { isLoading, data: Products = [], refetch } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/books?email=${user.email}`, {
+            const res = await fetch(`https://resale-server-murex.vercel.app/books?email=${user.email}`, {
                 method: "GET",
                 headers: {
                     'content-type': 'application/json',
@@ -26,7 +28,7 @@ const MyProducts = () => {
         return <Spinner />;
     }
     const handleOffAdvertise = (id) => {
-        fetch(`http://localhost:5000/offadv/${id}`, {
+        fetch(`https://resale-server-murex.vercel.app/offadv/${id}`, {
             method: "POST",
             headers: {
                 'content-type': "application/json",
@@ -43,7 +45,7 @@ const MyProducts = () => {
             })
     }
     const handleAdvertise = (id) => {
-        fetch(`http://localhost:5000/adv/${id}`, {
+        fetch(`https://resale-server-murex.vercel.app/adv/${id}`, {
             method: "POST",
             headers: {
                 'content-type': "application/json",
@@ -62,7 +64,7 @@ const MyProducts = () => {
     }
     // product delete handler
     const handleDeleteProduct = (_id) => {
-        fetch(`http://localhost:5000/deletebook/${_id}`, {
+        fetch(`https://resale-server-murex.vercel.app/deletebook/${_id}`, {
             method: "DELETE",
             headers: {
                 'content-type': "application/json",

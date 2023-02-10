@@ -4,8 +4,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../context/AuthContext/AuthProvider';
 import { toast } from 'react-hot-toast';
 import useToken from '../../hooks/useToken';
+import useTitle from '../../hooks/useTitle';
 
 const Signup = () => {
+    useTitle("SignUp")
     const formData = new FormData();
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -61,7 +63,7 @@ const Signup = () => {
                                 const currentUser = {
                                     email: user.email
                                 }
-                                fetch('http://localhost:5000/jwt', {
+                                fetch('https://resale-server-murex.vercel.app/jwt', {
                                     method: 'POST',
                                     headers: {
                                         'content-type': 'application/json'
@@ -102,7 +104,7 @@ const Signup = () => {
                     role: "buyer",
                     img: photoURL,
                 }
-                fetch('http://localhost:5000/g-users', {
+                fetch('https://resale-server-murex.vercel.app/g-users', {
                     method: "POST",
                     headers: {
                         'content-type': "application/json",
@@ -116,7 +118,7 @@ const Signup = () => {
                         const currentUser = {
                             email: user.email
                         }
-                        fetch('http://localhost:5000/jwt', {
+                        fetch('https://resale-server-murex.vercel.app/jwt', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

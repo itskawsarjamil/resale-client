@@ -3,11 +3,13 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Spinner from "../../Shared/Spinner/Spinner";
 import CheckoutForm from "./CheckOutForm";
+import useTitle from "../../../hooks/useTitle";
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_stripe_pk);
 
 const MakePayment = () => {
+    useTitle("Payments");
     const order = useLoaderData();
     const navigation = useNavigation();
     const { bookTitle, bookPrice } = order;

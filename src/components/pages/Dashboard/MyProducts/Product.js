@@ -19,7 +19,7 @@ const Product = ({ product, handleDeleteProduct, handleAdvertise, handleOffAdver
     const { data: userDetail = [] } = useQuery({
         queryKey: ["userDetail"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/sellerDetail?email=${seller_email}`);
+            const res = await fetch(`https://resale-server-murex.vercel.app/sellerDetail?email=${seller_email}`);
             const data = await res.json();
             return data;
         }
@@ -27,7 +27,7 @@ const Product = ({ product, handleDeleteProduct, handleAdvertise, handleOffAdver
     const [isSold, setIsSold] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/issold/${_id}`)
+        fetch(`https://resale-server-murex.vercel.app/issold/${_id}`)
             .then(res => res.json())
             .then(data => setIsSold(data))
     }, [_id]);

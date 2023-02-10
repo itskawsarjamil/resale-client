@@ -11,11 +11,11 @@ const CheckoutForm = ({ order }) => {
 
     const stripe = useStripe();
     const elements = useElements();
-    const { bookPrice, email, name,  _id } = order;
+    const { bookPrice, email, name, _id } = order;
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://resale-server-murex.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const CheckoutForm = ({ order }) => {
                 email,
                 orderId: _id
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://resale-server-murex.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

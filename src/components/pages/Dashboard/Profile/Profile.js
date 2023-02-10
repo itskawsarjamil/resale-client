@@ -5,13 +5,13 @@ import Spinner from '../../Shared/Spinner/Spinner';
 import { useQuery } from 'react-query';
 
 const Profile = () => {
-    useTitle("Dashboard");
+    useTitle("Profile");
     const { user } = useContext(authContext);
     const { displayName, photoURL, email, phoneNumber, emailVerified } = user;
     const { isLoading, data: sellerDetail = {} } = useQuery({
         queryKey: ['sellerdetail'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/sellerDetail?email=${email}`);
+            const res = await fetch(`https://resale-server-murex.vercel.app/sellerDetail?email=${email}`);
             const data = await res.json();
             return data;
         }

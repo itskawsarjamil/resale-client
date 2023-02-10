@@ -6,7 +6,7 @@ const DropDown = ({ setIsMenuOpen }) => {
     const [isActive, setIsActive] = useState(false);
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/Categories')
+        fetch('https://resale-server-murex.vercel.app/Categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, []);

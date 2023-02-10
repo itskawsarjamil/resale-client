@@ -1,11 +1,13 @@
 import { useQuery } from "react-query";
 import Spinner from "../../../Shared/Spinner/Spinner";
+import useTitle from "../../../../hooks/useTitle";
 
 const AllBuyers = () => {
+    useTitle("Buyers")
     const { data: Buyers = [], isLoading } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/buyers', {
+            const res = await fetch('https://resale-server-murex.vercel.app/buyers', {
                 headers: {
                     'content-type': 'application/json',
                     authorization: `bearer ${localStorage.getItem('accessToken')}`

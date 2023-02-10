@@ -17,7 +17,7 @@ const Slider = () => {
     const { isLoading, data: adv = [] } = useQuery({
         queryKey: ["adv"],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/adv');
+            const res = await fetch('https://resale-server-murex.vercel.app/adv');
             const data = await res.json();
             return data;
         }

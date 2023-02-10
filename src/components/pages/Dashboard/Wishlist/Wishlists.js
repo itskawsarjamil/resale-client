@@ -4,13 +4,15 @@ import Wishlist from './Wishlist';
 import Modal from '../../CategoryBooks/Modal';
 import Spinner from '../../Shared/Spinner/Spinner';
 import { authContext } from '../../../context/AuthContext/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 const Wishlists = () => {
+    useTitle("WishList")
     const { user } = useContext(authContext);
     const { isLoading, data: books = [] } = useQuery({
         queryKey: ["books"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/wishlist?email=${user.email}`);
+            const res = await fetch(`https://resale-server-murex.vercel.app/wishlist?email=${user.email}`);
             const data = await res.json();
             return data;
         }
