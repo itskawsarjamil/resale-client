@@ -10,7 +10,13 @@ const MyProducts = () => {
     const { isLoading, data: Products = [], refetch } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/books?email=${user.email}`);
+            const res = await fetch(`http://localhost:5000/books?email=${user.email}`, {
+                method: "GET",
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -41,6 +47,7 @@ const MyProducts = () => {
             method: "POST",
             headers: {
                 'content-type': "application/json",
+
             }
 
         })

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../context/AuthContext/AuthProvider';
 import { toast } from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
     const formData = new FormData();
@@ -10,6 +11,12 @@ const Signup = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+
+    // const [SigninEmail, setSigninEmail] = useState('');
+    // const [token] = useToken(SigninEmail);
+    // if (token) {
+    //     navigate(from, { replace: true });
+    // }
 
     const imghostkey = process.env.REACT_APP_imgbb;
     const { signup, modifyInfo, googleSignin } = useContext(authContext);
@@ -51,18 +58,23 @@ const Signup = () => {
                         })
                             .then(() => {
                                 toast.success("profile updated");
-                                fetch('http://localhost:5000/users', {
-                                    method: "POST",
+                                const currentUser = {
+                                    email: user.email
+                                }
+                                fetch('http://localhost:5000/jwt', {
+                                    method: 'POST',
                                     headers: {
-                                        'content-type': "application/json",
+                                        'content-type': 'application/json'
                                     },
-                                    body: JSON.stringify(userData)
+                                    body: JSON.stringify(currentUser)
                                 })
                                     .then(res => res.json())
                                     .then(data => {
-                                        // console.log(data);
+                                        console.log(data)
+                                        localStorage.setItem('accessToken', data.Access_token);
                                     })
                                 navigate(from, { replace: true });
+
                             })
                     })
                     .catch((err) => {
@@ -100,8 +112,24 @@ const Signup = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        // setSigninEmail(email);
+                        const currentUser = {
+                            email: user.email
+                        }
+                        fetch('http://localhost:5000/jwt', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(currentUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data)
+                                localStorage.setItem('accessToken', data.Access_token);
+                            })
+                        navigate(from, { replace: true });
                     })
-                navigate(from, { replace: true });
             })
     }
 

@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 
 
 const AddProduct = () => {
-    const { user } = useContext(authContext)
+    const { user, logout } = useContext(authContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imageHostKey = process.env.REACT_APP_imgbb;
     // //date and time
@@ -63,21 +63,37 @@ const AddProduct = () => {
                                 contact: phone,
                                 description,
                                 relevantInformation,
+                                sold: false,
+                                adv: false,
+
                             }
                             fetch('http://localhost:5000/addbook', {
                                 method: 'POST',
                                 headers: {
-                                    'content-type': 'application/json'
+                                    'content-type': 'application/json',
+                                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                                 },
                                 body: JSON.stringify(product)
                             })
-                                .then(res => res.json())
+                                .then(res => {
+                                    if (res.status === 401 || res.status === 403) {
+                                        return logout();
+                                    }
+                                    return res.json();
+                                })
                                 .then(result => {
                                     // console.log(result)
-                                    if (result.acknowledged) {
-                                        toast.success(`${user.displayName} product added successfully.`)
-                                        navigate('/dashboard/myproducts')
-                                    }
+                                    fetch(`http://localhost:5000/addbook?pid=${result.insertedId}`)
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            // console.log(data);
+                                            if (data.acknowledged) {
+                                                toast.success(`${user.displayName} product added successfully.`)
+                                                navigate('/dashboard/myproducts')
+                                            }
+                                        })
+
+
                                 })
                         })
 

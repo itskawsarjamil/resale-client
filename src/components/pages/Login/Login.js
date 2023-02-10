@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo/resalelogo.png';
 import { authContext } from '../../context/AuthContext/AuthProvider';
 import { useForm } from 'react-hook-form';
+import useToken from '../../hooks/useToken';
+
 const Login = () => {
+
     const { register, handleSubmit, formState: { errors }, watch, } = useForm({
         email: null,
         password: null
@@ -12,6 +15,14 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+
+    const [loginEmail, setLoginEmail] = useState('');
+
+    const [token] = useToken(loginEmail);
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleForgetPassword = () => {
         const email = watch("email");
@@ -55,13 +66,29 @@ const Login = () => {
                     .then(data => {
                         console.log(data);
                     })
+                // setLoginEmail(email);
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('accessToken', data.Access_token);
+                    })
+                navigate(from, { replace: true });
                 alert("user login succcessfull");
                 // console.log(from);
                 // const currentUser = {
                 //     email: user.email
                 // }
 
-                navigate(from, { replace: true });
             })
     }
 
@@ -71,13 +98,30 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('accessToken', data.Access_token);
+                    })
+                navigate(from, { replace: true });
+                // setLoginEmail(user.email);
                 alert("user login succcessfull");
                 // console.log(from);
                 // const currentUser = {
                 //     email: user.email
                 // }
 
-                navigate(from, { replace: true });
+
             })
             .catch(err => {
                 console.log(err);

@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import Wishlist from './Wishlist';
 import Modal from '../../CategoryBooks/Modal';
 import Spinner from '../../Shared/Spinner/Spinner';
+import { authContext } from '../../../context/AuthContext/AuthProvider';
 
 const Wishlists = () => {
-
+    const { user } = useContext(authContext);
     const { isLoading, data: books = [] } = useQuery({
         queryKey: ["books"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/wishlist");
+            const res = await fetch(`http://localhost:5000/wishlist?email=${user.email}`);
             const data = await res.json();
             return data;
         }

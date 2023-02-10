@@ -37,7 +37,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/categorybooks/:id',
-                element: <CategoryBooks></CategoryBooks>,
+                element: <PrivateRoutes><CategoryBooks></CategoryBooks></PrivateRoutes>,
                 loader: ({ params }) => fetch(`http://localhost:5000/CategoryBooks/${params.id}`),
             },
             {

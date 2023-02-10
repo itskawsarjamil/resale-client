@@ -8,7 +8,7 @@ const AllSellers = () => {
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/sellers', {
                 headers: {
-                    // authorization: `bearer ${localStorage.getItem('usePhonsToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
             const data = await res.json();
